@@ -12,26 +12,32 @@
 #endif
 
 #include "myGL.h"
-#include "Vec3.h"
-#include "Mat3.h"
+#include "VEC3.h"
+#include "MAT3.h"
 
 /* Initialize your mini-GL library */
 void myGLInit( );
 
 void myVertex3f(...);
 /*
-	1 get your modelview matrix
-	2 multiply your vertex against your modelview matrix
-	3 glVertex(the transformed vertex)
-*/
-		
+ 1 get your modelview matrix
+ 2 multiply your vertex against your modelview matrix
+ 3 glVertex(the transformed vertex)
+ */
+
 void myNormal3f(...);
 /*
-	1 get your modelview matrix
-	1a compute the inverse transpose of the modelview matrix
-	2 multipliy your normal aginst your inverse transpose of the modelview matrix
-	3 glNormal(the transformed normal)
-*/
+ 1 get your modelview matrix
+ 1a compute the inverse transpose of the modelview matrix
+ 2 multipliy your normal aginst your inverse transpose of the modelview matrix
+ 3 glNormal(the transformed normal)
+ */
+
+void copyTo4By4Matrix(float *m, MAT3 a);
+
+void multiply4by4By4by4(float result[16], float mat1[16], float mat2[16]);
+
+MAT3 copyTo3By3Matrix(float *m);
 
 /* Controlled by myMatrixModeOn */
 void myMatrixMode( GLenum mode );
@@ -47,19 +53,19 @@ void myLoadIdentity( );
 
 /* Controlled by myTranslateOn */
 void myTranslatef( float x, float y, float z );
-		 
+
 /* Controlled by myRotateOn */
 void myRotatef( float angle, float x, float y, float z);
-		 
+
 /* Controlled by myScaleOn */
 void myScalef(float x, float y, float z );
-		  
+
 /* Controlled by myLookAtOn */
 void myLookAt(double eyeX, double eyeY, double eyeZ, double centerX, double centerY, double centerZ, double upX, double upY, double upZ);
 
 /* Controlled by myFrustumOn */
 void myFrustum(double left, double right, double bottom, double top, double zNear, double zFar);
-		                                  
+
 /* Controlled by myPerspectiveOn */
 void myPerspective(double fovy, double aspect, double zNear, double zFar);
 
@@ -76,7 +82,5 @@ void toggleMyLookAt( );
 void toggleMyFrustum( );
 void toggleMyPerspective( );
 void toggleMyOrtho( );
-
-vec3 simpleshader(vec3& l, vec3& n, vec3& v);
 
 #endif

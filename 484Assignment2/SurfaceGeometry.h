@@ -17,12 +17,8 @@ enum {
 };
 
 void GetStrings( unsigned int surface, char ** strName, char ** strAuthor,
-                 char ** strX, char ** strY, char ** strZ, char ** strRange );
+                char ** strX, char ** strY, char ** strZ, char ** strRange );
 
 SGFaceList* BuildGeometry( unsigned int surface, unsigned int colorScheme,
-												 unsigned int subdivisions, unsigned int xyRatio );
-
-
-
+                          unsigned int subdivisions, unsigned int xyRatio );
 #endif
-

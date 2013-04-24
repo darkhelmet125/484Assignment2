@@ -1,178 +1,280 @@
 #include "VEC3.h"
+#define VEC3_SIZE 3
+
+#ifndef M_PI
+#define M_PI        3.14159265358979323846264338327950288
+#endif
+
+#ifndef DEG2RAD
+#define DEG2RAD( theta ) ((theta) * (M_PI/180.0))
+#endif
+
+#ifndef RAD2DEG
+#define RAD2DEG( theta ) ((theta) * (180.0/M_PI))
+#endif
+
+#ifndef ABS
+#define ABS( x ) ((x) < (0) ? (-x) : (x))
+#endif
+
+#ifndef SQR
+#define SQR( x ) ((x) * (x))
+#endif
+
+#ifndef MAX
+#define MAX( a, b ) ((a) > (b) ? (a) : (b))
+#endif
+
+#ifndef MIN
+#define MIN( a, b ) ((a) < (b) ? (a) : (b))
+#endif
+
+#ifndef MSGFX_FP
+#define MSGFX_FP
+
+#define FP_EPSILON 1e-6
+#define ALMOST_ZERO FP_EPSILON
+
+#define FP_EQUAL(a, b, delta) ( ((a) == (b)) || \
+((a)-(delta) < (b) && \
+(a)+(delta) > (b)) )
+
+#define FP_LT(a, b, delta)  (fabs((a) - (b)) < (delta))
+
+#define FP_GT(a, b, delta)  (fabs((a) - (b)) > (delta))
+
+#define IOS_FP_PRECISION 5
+#endif
 
 
-VEC3::VEC3()
+VEC3 :: VEC3()
 {
-	for( int i = 0; i < 3; ++i )
-		components[i] = 0;
+    components[0] = 1;
+    components[1] = 1;
+    components[2] = 1;
 }
 
-VEC3::VEC3( const double& a, const double& b, const double& c )
+VEC3 :: VEC3(float a, float b, float c)
 {
-	components[X] = a;
-	components[Y] = b;
-	components[Z] = c;
+    components[0] = a;
+    components[1] = b;
+    components[2] = c;
 }
 
-VEC3::VEC3( float a[3] )
+VEC3 :: VEC3( const VEC3& v)
 {
-	for( int i = 0; i < 3; ++i )
-		components[i] = a[i];
+    components[0] = v.components[0];
+    components[1] = v.components[1];
+    components[2] = v.components[2];
 }
 
-VEC3 VEC3::add( VEC3 x )
+VEC3 :: VEC3( const VEC3 * v)
 {
-	VEC3 temp;
-	for( int i = 0; i < 3; i++ )
-		temp.components[i] = components[i] + x.components[i];
-	return temp;
+    components[0] = v->components[0];
+    components[1] = v->components[1];
+    components[2] = v->components[2];
 }
 
-VEC3 VEC3::subtract( VEC3 x )
+VEC3 :: VEC3( const float* a)
 {
-	VEC3 temp;
-	for( int i = 0; i < 3; i++ )
-		temp.components[i] = components[i] - x.components[i];
-	return temp;
-}
-VEC3 VEC3::multiply( double y )
-{
-	VEC3 temp;
-	for( int i = 0; i < 3; i++ )
-		temp.components[i] = components[i] * y;
-	return temp;
+    components[0] = a[0];
+    components[1] = a[1];
+    components[2] = a[2];
 }
 
-double VEC3::dot( VEC3 x )
+VEC3 VEC3 :: operator+(const VEC3& v)const
 {
-	double z = 0;
-	for( int i = 0; i < 3; i++ )
-		z += components[i] * x.components[i];
-	return z;
+    return(VEC3(components[0] + v.components[0],
+                components[1] + v.components[1],
+                components[2] + v.components[2]));
 }
 
-VEC3 VEC3::negate()
-{
-	VEC3 temp;
-	for( int i = 0; i < 3; i++ )
-		temp.components[i] = -1 * components[i];
-	return temp;
+VEC3 VEC3 :: operator - (const VEC3& v){
+    return(VEC3(components[0] - v.components[0],
+                components[1] - v.components[1],
+                components[2] - v.components[2]));
 }
 
-double VEC3::Length()
+VEC3 VEC3 :: operator =( const VEC3 &v )
 {
-	return sqrt( (components[0]*components[0]) + (components[1]*components[1])
-		+ (components[2]*components[2]) );
+    for( int i=0; i <3;i++){
+        components[i] = v.components[i];
+    }
+    return( *this);
 }
 
-double VEC3::SquaredLength()
+VEC3 VEC3 :: operator = (const VEC3* v)
 {
-	return (components[0]*components[0]) + (components[1]*components[1])
-		+ (components[2]*components[2]);
+    for( int i=0; i <3;i++){
+        components[i] = v->components[i];
+    }
+    return( *this);
 }
 
-void VEC3::Normalize()
+VEC3 VEC3 :: operator = (const float* v)
 {
-	for( int i = 0; i < 3; i++ )
-		components[i] = components[i]/Length();
+    for( int i=0; i <3;i++){
+        components[i] = v[i];
+    }
+    return( *this);
 }
 
-void VEC3::Display()
+VEC3 VEC3 :: operator*(const float scalar)
 {
-	for( int i = 0; i < 3; i++ )
-		printf( "%.16f  ", components[i] );
-	printf( "\n" );
+    return(VEC3(scalar * components[0], scalar * components[1], scalar * components[2]));
 }
 
-VEC3 VEC3::operator +( VEC3 x )
+VEC3 VEC3 :: operator/=(const float scalar)
 {
-	return add( x );
+    components[0] = components[0] / scalar;
+    components[1] = components[1] / scalar;
+    components[2] = components[2] / scalar;
+    return(VEC3(components[0], components[1], components[2]));
 }
 
-VEC3 VEC3::operator -( VEC3 x )
+VEC3 VEC3 :: operator*=(const float scalar)
 {
-	return subtract( x );
+    components[0] = scalar * components[0];
+    components[1] = scalar * components[1];
+    components[2] = scalar * components[2];
+    return(VEC3(components[0], components[1], components[2]));
 }
 
-VEC3 VEC3::operator *( double y )
+VEC3 VEC3 :: operator/(const float scalar)
 {
-	return multiply( y );
+    return(VEC3(components[0] / scalar, components[1] / scalar, components[2] / scalar));
 }
 
-VEC3 operator *( double y, VEC3 x )
+bool VEC3 :: operator== (const VEC3& v)
 {
-	return x.multiply( y );
+    return ((fabs(components[0] - v.components[0]) <= EPSILON) && (fabs(components[1] - v.components[1]) <= EPSILON) && ((fabs(components[2] - v.components[2]) <= EPSILON)));
 }
 
-VEC3 VEC3::operator -()
+bool VEC3 :: operator != (const VEC3& v)
 {
-	return negate();
+    return ((fabs(components[0] - v.components[0])> EPSILON) || (fabs(components[1] - v.components[1])> EPSILON) || ((fabs(components[2] - v.components[2])> EPSILON)));
 }
 
-void VEC3::operator=( float *x )
+float VEC3 :: operator[](const size_t index) const
 {
-	for( int i = 0; i < 3; i++ )
-		components[i] = x[i];
+    if (index == 0)
+    {
+        return (components[0]);
+    }
+    else if (index == 1)
+    {
+        return (components[1]);
+    }
+    else if (index == 2)
+    {
+        return (components[2]);
+    }
+    else
+    {
+        throw("Index too large. Out of bounds.");
+    }
 }
 
-bool VEC3::operator ==( VEC3 x )
+float& VEC3 :: operator[](const size_t index)
 {
-	for( int i = 0; i < 3; i++ )
-		if( abs(components[i]-x.components[i]) > ALMOST_ZERO )
-			return false;
-	return true;
+    if (index == 0)
+    {
+        return (components[0]);
+    }
+    else if (index == 1)
+    {
+        return (components[1]);
+    }
+    else if (index == 2)
+    {
+        return (components[2]);
+    }
+    else
+    {
+        throw("Index too large. Out of bounds.");
+    }
 }
 
-bool VEC3::operator !=( VEC3 x )
+VEC3 VEC3 :: normalize()
 {
-	if( *this == x )
-		return false;
-	else 
-		return true;
+    float len = length( );
+    //std::cout << len << std::endl;
+    for (int i=0; i < 3; i++){
+        components[i]= components[i]/len;
+    }
+    return(VEC3(components[0], components[1], components[2]));
 }
 
-
-double &VEC3::operator []( const size_t index )
+float VEC3 :: length()
 {
-	return components[index];
+    float length_tmp = 0.0;
+	length_tmp = sqrt( SQR(components[0]) +
+                      SQR(components[1]) +
+                      SQR(components[2]) );
+	return length_tmp;
 }
 
-const double &VEC3::operator []( const size_t index ) const
+float VEC3 :: squarelength()
 {
-	return components[index];
+    return pow(length(), 2);
 }
 
-VEC3::~VEC3(void)
+float VEC3 :: dot (const VEC3& v)
 {
+    return ((components[0] * v.components[0]) +(components[1] * v.components[1]) + (components[2] * v.components[2]));
 }
 
-VEC3 cross( VEC3 a, VEC3 b )
+VEC3 VEC3 :: operator -()
 {
-	VEC3 temp;
-	temp[0] = a[1]*b[2] - a[2]*b[1];
-	temp[1] = a[2]*b[0] - a[0]*b[2];
-	temp[2] = a[0]*b[1] - a[1]*b[0];
-	return temp;
+    components[0] = -1 * components[0];
+    components[1] = -1 * components[1];
+    components[2] = -1 * components[2];
+    
+    return(VEC3(components[0], components[1], components[2]));
 }
 
-VEC3 normal( VEC3& a, VEC3& b, VEC3& c )
+float VEC3 :: x() const
 {
-	VEC3 dir = cross( b-a, c-a );
-	dir.Normalize();
-	return dir;
+    return components[0];
 }
 
-void Normalize( VEC3& v )
+float VEC3 :: y() const
 {
-	for( int i = 0; i < 3; i++ )
-		v[i] = v[i]/v.Length();
+    return components[1];
 }
 
-
-
-std::ostream& operator<<( std::ostream &out, const VEC3 &v )
+float VEC3 :: z() const
 {
-	out<<std::showpoint<<std::setprecision(6);
-	out<<v[X]<<"\n"<<v[Y]<<"\n"<<v[Z];
-	return out;
+    return components[2];
 }
+
+void VEC3 :: setX( float x)
+{
+    components[0]=x;
+}
+
+void VEC3 :: setY( float y)
+{
+    components[1]=y;
+}
+
+void VEC3 :: setZ( float z)
+{
+    components[2]=z;
+}
+
+VEC3 operator* (const float scalar, VEC3& v)
+{
+    return(VEC3(scalar * v.x(), scalar * v.y(), scalar * v.z()));
+}
+
+VEC3 cross(const VEC3& a, const VEC3& b)
+{
+    float x = (a.y()*b.z())-(b.y()*a.z());
+    float y = (a.z()*b.x())-(b.z()*b.x());
+    float z = (a.x()*b.y())-(b.x()*a.y());
+    
+    return (VEC3(x, y, z));
+}
+
+VEC3 :: ~VEC3(){}

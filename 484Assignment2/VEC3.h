@@ -1,10 +1,19 @@
-#pragma once
+#ifndef __VEC3_H__
+#define __VEC3_H__
 
-
+#include <cstdio>
+#include <cstdlib>
+#include <cmath>
 #include <iostream>
-#include <iomanip>
 
-#include "SGFaceList.h"
+enum values {
+    x = 0,
+    y = 1,
+    z = 2
+};
+
+const float EPSILON = .0000001;
+#define VEC3_SIZE 3
 
 #ifndef M_PI
 #define M_PI        3.14159265358979323846264338327950288
@@ -22,46 +31,91 @@
 #define ABS( x ) ((x) < (0) ? (-x) : (x))
 #endif
 
-#ifndef ALMOST_ZERO
-#define ALMOST_ZERO 1e-6
+#ifndef SQR
+#define SQR( x ) ((x) * (x))
 #endif
 
-/*
-#ifndef XYZW
-  enum{X = 0, Y, Z, W};
-#endif*/
+#ifndef MAX
+#define MAX( a, b ) ((a) > (b) ? (a) : (b))
+#endif
+
+#ifndef MIN
+#define MIN( a, b ) ((a) < (b) ? (a) : (b))
+#endif
+
+#ifndef MSGFX_FP
+#define MSGFX_FP
+
+#define FP_EPSILON 1e-6
+#define ALMOST_ZERO FP_EPSILON
+
+#define FP_EQUAL(a, b, delta) ( ((a) == (b)) || \
+((a)-(delta) < (b) && \
+(a)+(delta) > (b)) )
+
+#define FP_LT(a, b, delta)  (fabs((a) - (b)) < (delta))
+
+#define FP_GT(a, b, delta)  (fabs((a) - (b)) > (delta))
+
+#define IOS_FP_PRECISION 5
+#endif
 
 
-class VEC3
-{
-	double components[3];
+class VEC3 {
+private:
+    float components[3];
 public:
-	VEC3 ();
-	VEC3( const double& a, const double& b, const double& c );
-	VEC3( float a[3] );
-	VEC3 add( VEC3 x );
-	VEC3 subtract( VEC3 x );
-	VEC3 multiply( double y );
-	double dot( VEC3 x );
-	VEC3 negate();
-	double Length();
-	double SquaredLength();
-	void Normalize();
-	void Display();
-	VEC3 operator +( VEC3 x );
-	VEC3 operator -( VEC3 x );
-	VEC3 operator *( double y );
-	VEC3 operator -();
-	void operator =( float *x );
-	bool operator ==( VEC3 x );
-	bool operator !=( VEC3 x );
-	double &operator []( const size_t index );
-	const double &operator []( const size_t index ) const;
-	~VEC3(void);
+    
+    values space;
+    VEC3();
+    VEC3(float a, float b, float c);
+    VEC3( const VEC3& v);
+	explicit VEC3( const VEC3 * v);
+    explicit VEC3( const float* a);
+    ~VEC3();
+    
+    VEC3 operator+(const VEC3& v)const;
+    VEC3 operator-(const VEC3& v);
+	VEC3 operator-();
+    VEC3 operator=( const VEC3 &v );
+    VEC3 operator=(const VEC3* v);
+	VEC3 operator=(const float* v);
+    VEC3 operator*(const float scalar);
+    VEC3 operator/=(const float scalar);
+    VEC3 operator*=(const float scalar);
+    VEC3 operator/(const float scalar);
+    bool operator==(const VEC3& v);
+    bool operator!=(const VEC3& v);
+    float operator[](const size_t index) const;
+	float& operator[](const size_t index);
+    
+    VEC3 normalize();
+    float length();
+	float squarelength();
+    float dot (const VEC3& v);
+    float x() const;
+    float y() const;
+    float z() const;
+    void setX( float x);
+    void setY( float y);
+    void setZ( float z);
+    
+    std::ostream& write(std::ostream& out ) const{
+        out << "[";
+        for( int i = 0; i < 3; i++ ){
+            out << components[i];
+            if( i < 2 ){
+                out << std::endl;
+            }
+        }
+        out << "]" << std::endl;
+        return(out);
+    }
 };
+/*
+ *          End of VEC3 class
+ */
 
-VEC3 operator *( double y, VEC3 x );
-VEC3 cross( VEC3 a, VEC3 b );
-VEC3 normal( VEC3& a, VEC3& b, VEC3& c );
-void Normalize( VEC3& v );
-std::ostream& operator <<( std::ostream &out, const VEC3 &v );
+VEC3 operator* (const float scalar, VEC3& v);
+VEC3 cross(const VEC3& a, const VEC3& b);
+#endif
