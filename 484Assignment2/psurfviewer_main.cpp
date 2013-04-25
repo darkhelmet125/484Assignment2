@@ -68,7 +68,7 @@ void init( void )
     glFrontFace( GL_CCW );
  	
     for( int i = 0; i < kSurfaces; i++ ){
-        gModel[i] = BuildGeometry( i, 4, 8, 3 );
+        gModel[i] = BuildGeometry( i, 4, 64, 24 );
     }
     gCurrentModel = 0;
     for( int i = 0; i < 3; i++ ){

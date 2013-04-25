@@ -7,8 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3D3D224B172775300033CD43 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D3D224A172775300033CD43 /* main.cpp */; };
 		3D3D224D172775300033CD43 /* _84Assignment2.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3D3D224C172775300033CD43 /* _84Assignment2.1 */; };
+		3D3D225B172775810033CD43 /* getopt_long.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D3D2253172775810033CD43 /* getopt_long.cpp */; };
+		3D3D225C172775810033CD43 /* myGL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D3D2255172775810033CD43 /* myGL.cpp */; };
+		3D3D225D172775810033CD43 /* psurfviewer_main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D3D2257172775810033CD43 /* psurfviewer_main.cpp */; };
+		3D3D225E172775810033CD43 /* SurfaceGeometry.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D3D2259172775810033CD43 /* SurfaceGeometry.cpp */; };
+		3D3D226317277A4C0033CD43 /* MAT3.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D3D225F17277A4B0033CD43 /* MAT3.cpp */; };
+		3D3D226417277A4C0033CD43 /* VEC3.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D3D226117277A4B0033CD43 /* VEC3.cpp */; };
+		3D3D2267172883C80033CD43 /* GLUT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D3D2265172883C80033CD43 /* GLUT.framework */; };
+		3D3D2268172883C80033CD43 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D3D2266172883C80033CD43 /* OpenGL.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -26,8 +33,21 @@
 
 /* Begin PBXFileReference section */
 		3D3D2247172775300033CD43 /* 484Assignment2 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = 484Assignment2; sourceTree = BUILT_PRODUCTS_DIR; };
-		3D3D224A172775300033CD43 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		3D3D224C172775300033CD43 /* _84Assignment2.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = _84Assignment2.1; sourceTree = "<group>"; };
+		3D3D2253172775810033CD43 /* getopt_long.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = getopt_long.cpp; sourceTree = "<group>"; };
+		3D3D2254172775810033CD43 /* getopt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = getopt.h; sourceTree = "<group>"; };
+		3D3D2255172775810033CD43 /* myGL.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = myGL.cpp; sourceTree = "<group>"; };
+		3D3D2256172775810033CD43 /* myGL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = myGL.h; sourceTree = "<group>"; };
+		3D3D2257172775810033CD43 /* psurfviewer_main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = psurfviewer_main.cpp; sourceTree = "<group>"; };
+		3D3D2258172775810033CD43 /* SGFaceList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGFaceList.h; sourceTree = "<group>"; };
+		3D3D2259172775810033CD43 /* SurfaceGeometry.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SurfaceGeometry.cpp; sourceTree = "<group>"; };
+		3D3D225A172775810033CD43 /* SurfaceGeometry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SurfaceGeometry.h; sourceTree = "<group>"; };
+		3D3D225F17277A4B0033CD43 /* MAT3.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MAT3.cpp; sourceTree = "<group>"; };
+		3D3D226017277A4B0033CD43 /* MAT3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAT3.h; sourceTree = "<group>"; };
+		3D3D226117277A4B0033CD43 /* VEC3.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = VEC3.cpp; sourceTree = "<group>"; };
+		3D3D226217277A4C0033CD43 /* VEC3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VEC3.h; sourceTree = "<group>"; };
+		3D3D2265172883C80033CD43 /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = System/Library/Frameworks/GLUT.framework; sourceTree = SDKROOT; };
+		3D3D2266172883C80033CD43 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,6 +55,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3D3D2267172883C80033CD43 /* GLUT.framework in Frameworks */,
+				3D3D2268172883C80033CD43 /* OpenGL.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -44,6 +66,8 @@
 		3D3D223E172775300033CD43 = {
 			isa = PBXGroup;
 			children = (
+				3D3D2265172883C80033CD43 /* GLUT.framework */,
+				3D3D2266172883C80033CD43 /* OpenGL.framework */,
 				3D3D2249172775300033CD43 /* 484Assignment2 */,
 				3D3D2248172775300033CD43 /* Products */,
 			);
@@ -60,7 +84,18 @@
 		3D3D2249172775300033CD43 /* 484Assignment2 */ = {
 			isa = PBXGroup;
 			children = (
-				3D3D224A172775300033CD43 /* main.cpp */,
+				3D3D2253172775810033CD43 /* getopt_long.cpp */,
+				3D3D2254172775810033CD43 /* getopt.h */,
+				3D3D2256172775810033CD43 /* myGL.h */,
+				3D3D2255172775810033CD43 /* myGL.cpp */,
+				3D3D2257172775810033CD43 /* psurfviewer_main.cpp */,
+				3D3D2258172775810033CD43 /* SGFaceList.h */,
+				3D3D225A172775810033CD43 /* SurfaceGeometry.h */,
+				3D3D2259172775810033CD43 /* SurfaceGeometry.cpp */,
+				3D3D226017277A4B0033CD43 /* MAT3.h */,
+				3D3D225F17277A4B0033CD43 /* MAT3.cpp */,
+				3D3D226217277A4C0033CD43 /* VEC3.h */,
+				3D3D226117277A4B0033CD43 /* VEC3.cpp */,
 				3D3D224C172775300033CD43 /* _84Assignment2.1 */,
 			);
 			path = 484Assignment2;
@@ -117,7 +152,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3D3D224B172775300033CD43 /* main.cpp in Sources */,
+				3D3D225B172775810033CD43 /* getopt_long.cpp in Sources */,
+				3D3D225C172775810033CD43 /* myGL.cpp in Sources */,
+				3D3D225D172775810033CD43 /* psurfviewer_main.cpp in Sources */,
+				3D3D225E172775810033CD43 /* SurfaceGeometry.cpp in Sources */,
+				3D3D226317277A4C0033CD43 /* MAT3.cpp in Sources */,
+				3D3D226417277A4C0033CD43 /* VEC3.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
